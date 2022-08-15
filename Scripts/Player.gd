@@ -1,12 +1,21 @@
 extends CharacterBody3D
 
-var SPEED := 7.0
-var JUMP_VELOCITY := 4.5
+var speed := 7.0
+var JUMP_VELOCITY := 7.0
+
+var DEFAULT_SPEED := 7.0
+var MAX_SPEED := 21.0
+var SPEED_UP_RATE := 3
+
+var last_position: Vector3
+
 var in_air: bool = false
 
 var jump_grace_period: bool
 var jumping: bool
 var crouching: bool
+var sliding: bool
+var stop_sliding: bool
 
 var jump_start_height: float
 var crouch_start_rotation: Vector3
@@ -38,24 +47,34 @@ func _input(event):
 	if event is InputEventMouseButton && Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-
 func _physics_process(delta):
+	if velocity.length() > 5:
+		speed += SPEED_UP_RATE * delta
+		speed = clamp(speed, 0, MAX_SPEED)
+	else:
+		speed = DEFAULT_SPEED
+	
+	Camera.fov = lerp(Camera.fov, 75 + velocity.length(), 0.1)
+	
 	if Input.is_action_pressed("crouch"):
 		if not crouching:
 			crouch_start_rotation = rotation
 		crouching = true
-		if SlideRay.is_colliding() && SlideRay.get_collision_normal() != Vector3.UP:
-			var f := SlideRay.get_collision_normal().normalized()
-			velocity += Vector3(f.x, -15, f.z)  * .7
+		if SlideRay.is_colliding() and SlideRay.get_collision_normal().y != 1 and not stop_sliding:
+			sliding = true
+			var f := SlideRay.get_collision_normal()
+			velocity += Vector3(f.x, -10, f.z)  * .7
 			
-			Camera.rotation.z = lerp(Camera.rotation.z, Vector2(f.x, f.z).angle() * .1, 0.5)
-		
+			if not in_air:
+				Camera.rotation.z = lerp(Camera.rotation.z, Vector2(f.x, f.z).angle() * .1, 0.1)
+		else:
+			sliding = false
+			Camera.rotation.z = lerp(Camera.rotation.z, 0, 0.1)
 		$Neck.position.y = 0.5
 	else:
 		crouching = false
 		$Neck.position.y = 1
-		Camera.rotation.z = 0
-	
+		Camera.rotation.z = lerp(Camera.rotation.z, 0, 0.1)
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -76,18 +95,22 @@ func _physics_process(delta):
 		jumping = false
 	
 	if Input.is_action_just_pressed("jump") and jump_grace_period:
+		if sliding:
+			stop_sliding = true
 		jumping = true
 		jump_grace_period = false
 		jump_start_height = position.y
 		velocity.y = JUMP_VELOCITY
+		get_tree().create_timer(.3).connect("timeout", func(): stop_sliding = false)
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED/40)
-		velocity.z = move_toward(velocity.z, 0, SPEED/40)
-
+		velocity.x = move_toward(velocity.x, 0, speed/40)
+		velocity.z = move_toward(velocity.z, 0, speed/40)
+	
+	last_position = position
 	move_and_slide()

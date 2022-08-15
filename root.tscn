@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgiouak4nco8d"]
+[gd_scene load_steps=8 format=3 uid="uid://cgiouak4nco8d"]
 
-[ext_resource type="Texture2D" uid="uid://dlvq3r7wvyv4c" path="res://Dark/texture_01.png" id="1_17xut"]
-[ext_resource type="Script" path="res://Player.gd" id="1_humh3"]
-[ext_resource type="Script" path="res://weapon.gd" id="3_by5a3"]
+[ext_resource type="Texture2D" uid="uid://dlvq3r7wvyv4c" path="res://Assets/Dark/texture_01.png" id="1_17xut"]
+[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id="2_rwgfc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gmjdv"]
 sky_horizon_color = Color(0.642329, 0.658598, 0.673774, 1)
@@ -26,42 +25,13 @@ uv1_triplanar = true
 albedo_texture = ExtResource("1_17xut")
 uv1_triplanar = true
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_euc82"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pgf71"]
-points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
-
-[sub_resource type="Animation" id="Animation_o1yrf"]
-resource_name = "hard_fall"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Neck:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 4.92458),
-"update": 0,
-"values": [Vector3(0, 0.7, 0), Vector3(0, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0fqxv"]
-_data = {
-"hard_fall": SubResource("Animation_o1yrf")
-}
-
-[sub_resource type="TextMesh" id="TextMesh_j7ro6"]
-text = "gun here"
-
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7u6qd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 6.42726, 0)
 shadow_enabled = true
 directional_shadow_max_distance = 250.0
 
@@ -75,7 +45,7 @@ material = SubResource("StandardMaterial3D_jfu5m")
 
 [node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, -1, 9)
-polygon = PackedVector2Array(5, 1, 0, 1, -9, 1, -9, 9, -5, 9)
+polygon = PackedVector2Array(5, 1, 0, 1, -9, 1, -18.9835, 0.71512, -19.8922, 15.1364)
 depth = 16.0
 material = SubResource("StandardMaterial3D_q702d")
 
@@ -97,39 +67,4 @@ polygon = PackedVector2Array(5, 1, 0, 1, -9, 1, -9, 9, -5, 9)
 depth = 16.0
 material = SubResource("StandardMaterial3D_q702d")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 4, 1)
-floor_block_on_wall = false
-script = ExtResource("1_humh3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("CapsuleMesh_euc82")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("ConvexPolygonShape3D_pgf71")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-libraries = {
-"": SubResource("AnimationLibrary_0fqxv")
-}
-
-[node name="SlideRay" type="RayCast3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
-target_position = Vector3(0, -0.5, 0)
-
-[node name="Neck" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-
-[node name="Camera" type="Camera3D" parent="Player/Neck"]
-
-[node name="weapon" type="Node3D" parent="Player/Neck"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.5, -0.8)
-script = ExtResource("3_by5a3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Neck/weapon"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("TextMesh_j7ro6")
-
-[node name="Ray" type="RayCast3D" parent="Player/Neck/weapon"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.1, 0)
-target_position = Vector3(0, -100, 0)
+[node name="Player" parent="." instance=ExtResource("2_rwgfc")]
