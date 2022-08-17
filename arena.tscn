@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgiouak4nco8d"]
+
+[ext_resource type="Script" path="res://Scripts/arena.gd" id="1_d6sg4"]
+[ext_resource type="PackedScene" uid="uid://c0onwct0xl47" path="res://Scenes/Player.tscn" id="1_mne1k"]
+[ext_resource type="Texture2D" uid="uid://dlvq3r7wvyv4c" path="res://Assets/Dark/texture_01.png" id="2_jlrkr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lictn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_534n5"]
+sky_material = SubResource("ProceduralSkyMaterial_lictn")
+
+[sub_resource type="Environment" id="Environment_fyove"]
+background_mode = 2
+sky = SubResource("Sky_534n5")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k46xb"]
+albedo_texture = ExtResource("2_jlrkr")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrd5q"]
+albedo_texture = ExtResource("2_jlrkr")
+uv1_triplanar = true
+
+[node name="arena" type="Node3D"]
+script = ExtResource("1_d6sg4")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 34.6953, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fyove")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.999997, 0.00127054, -0.00227147, -0.00128163, 0.999987, -0.00488082, 0.00226524, 0.00488372, 0.999986, 0, 0, 0)
+size = Vector3(50, 50, 50)
+material = SubResource("StandardMaterial3D_k46xb")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 1, 0)
+operation = 2
+radius = 25.0
+height = 10.0
+cone = true
+material = SubResource("StandardMaterial3D_mrd5q")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.8274, 0)
+operation = 2
+radius = 25.0
+height = 38.0472
+cone = true
+material = SubResource("StandardMaterial3D_mrd5q")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_mne1k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18.4284, 4, 0)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_spawnTick"]

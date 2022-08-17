@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv6dr5qq7hlvs"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyFlying.gd" id="1_1cujg"]
+[ext_resource type="PackedScene" uid="uid://g8ou0cssc0jk" path="res://Assets/Models/fish.glb" id="2_s3l7e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3ytot"]
+bounce = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mcysx"]
+radius = 0.943249
+
+[node name="Enemy" type="RigidDynamicBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_3ytot")
+script = ExtResource("1_1cujg")
+
+[node name="fish" parent="." instance=ExtResource("2_s3l7e")]
+transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 0, 0, 0)
+
+[node name="HitBox" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2, 0, 4.31697e-07, 0, 2, 0, -3.01992e-07, 0, -2.859, 0, 0, 0)
+shape = SubResource("SphereShape3D_mcysx")

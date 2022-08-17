@@ -11,9 +11,22 @@ config_version=5
 [application]
 
 config/name="extrinsic"
-run/main_scene="res://root.tscn"
+run/main_scene="res://arena.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
+
+[display]
+
+window/size/viewport_width=512
+window/size/viewport_height=300
+window/size/window_width_override=1024
+window/size/window_height_override=600
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

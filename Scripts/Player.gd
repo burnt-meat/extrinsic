@@ -1,11 +1,6 @@
 extends CharacterBody3D
 
 var speed := 7.0
-var JUMP_VELOCITY := 7.0
-
-var DEFAULT_SPEED := 7.0
-var MAX_SPEED := 21.0
-var SPEED_UP_RATE := 3
 
 var last_position: Vector3
 
@@ -20,13 +15,20 @@ var stop_sliding: bool
 var jump_start_height: float
 var crouch_start_rotation: Vector3
 
-@export var sensitivity := 0.09
+@export var JUMP_VELOCITY := 7.0
+
+@export var DEFAULT_SPEED := 5.5
+@export var MAX_SPEED := 21.0
+@export var SPEED_UP_RATE := 1.5
+
+@export var sensitivity := 0.2
 
 @onready var Neck: Node3D = $Neck
 @onready var Camera: Camera3D = $Neck/Camera
 @onready var SlideRay: RayCast3D = $SlideRay
+@onready var AP: AnimationPlayer = $AnimationPlayer
 
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 1.5
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -49,6 +51,7 @@ func _input(event):
 
 func _physics_process(delta):
 	if velocity.length() > 5:
+		# TODO add FOV setting
 		speed += SPEED_UP_RATE * delta
 		speed = clamp(speed, 0, MAX_SPEED)
 	else:
@@ -60,21 +63,21 @@ func _physics_process(delta):
 		if not crouching:
 			crouch_start_rotation = rotation
 		crouching = true
-		if SlideRay.is_colliding() and SlideRay.get_collision_normal().y != 1 and not stop_sliding:
+		if SlideRay.is_colliding() and not SlideRay.get_collider().is_in_group("Enemy") and SlideRay.get_collision_normal().y != 1 and not stop_sliding:
 			sliding = true
 			var f := SlideRay.get_collision_normal()
-			velocity += Vector3(f.x, -10, f.z)  * .7
+			velocity += Vector3(f.x, -15, f.z)  * .7
 			
 			if not in_air:
 				Camera.rotation.z = lerp(Camera.rotation.z, Vector2(f.x, f.z).angle() * .1, 0.1)
 		else:
 			sliding = false
-			Camera.rotation.z = lerp(Camera.rotation.z, 0, 0.1)
+			Camera.rotation.z = lerp(Camera.rotation.z, 0.0, 0.1)
 		$Neck.position.y = 0.5
 	else:
 		crouching = false
 		$Neck.position.y = 1
-		Camera.rotation.z = lerp(Camera.rotation.z, 0, 0.1)
+		Camera.rotation.z = lerp(Camera.rotation.z, 0.0, 0.1)
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -88,9 +91,9 @@ func _physics_process(delta):
 	else:
 		jump_grace_period = true
 		if in_air:
-			var fall_size := jump_start_height - position.y
-			if fall_size > 2:
-				$AnimationPlayer.play("hard_fall")
+			#var fall_size := jump_start_height - position.y
+			AP.playback_speed = 1
+			AP.play("hard_fall")
 		in_air = false
 		jumping = false
 	
