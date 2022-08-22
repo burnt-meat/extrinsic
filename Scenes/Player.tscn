@@ -85,7 +85,7 @@ length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("weapon:rotation")
+tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +97,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("weapon:position")
+tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -143,11 +143,12 @@ near = 0.1
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -100, 0)
 
-[node name="weapon" type="Node3D" parent="Neck"]
+[node name="WeaponHolder" type="Node3D" parent="Neck"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.4)
 script = ExtResource("2_mm2sc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Neck/weapon"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Neck/WeaponHolder"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.3)
 mesh = SubResource("TextMesh_j7ro6")
 

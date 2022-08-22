@@ -2,6 +2,11 @@ extends RigidDynamicBody3D
 
 var Player: CharacterBody3D
 
+@export var health: float = 2:
+	set(value):
+		health = value
+		if value <= 0:
+			die() 
 @export var SPEED: float = 1
 
 func _ready():
@@ -13,3 +18,6 @@ func _integrate_forces(state):
 	apply_force((Player.position - position) * Vector3(1, 0, 1) * SPEED)
 	
 	look_at(Player.position)
+
+func die():
+	queue_free()
