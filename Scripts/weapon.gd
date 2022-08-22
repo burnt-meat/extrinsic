@@ -4,7 +4,7 @@ extends Node3D
 @onready var AP: AnimationPlayer = $"../AnimationPlayer"
 
 var damage: float = 1
-var cooldown: float = 1
+var cooldown: float = 0.1
 
 var onCooldown: bool = false
 
