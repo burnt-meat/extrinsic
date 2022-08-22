@@ -3,8 +3,9 @@ extends Node3D
 @onready var Ray: RayCast3D = $"../Camera/Ray"
 @onready var AP: AnimationPlayer = $"../AnimationPlayer"
 
-var damage: float = 1
-var cooldown: float = 0.1
+var damage: float = 0
+var cooldown: float = .1
+var effects: Array[Resource] = []
 
 var onCooldown: bool = false
 

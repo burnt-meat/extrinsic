@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0onwct0xl47"]
+[gd_scene load_steps=12 format=3 uid="uid://c0onwct0xl47"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_66hsi"]
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="2_mm2sc"]
@@ -76,9 +76,6 @@ _data = {
 "view_bob": SubResource("Animation_p5k36")
 }
 
-[sub_resource type="TextMesh" id="TextMesh_j7ro6"]
-text = "gun here"
-
 [sub_resource type="Animation" id="Animation_jgsae"]
 resource_name = "shoot"
 length = 0.15
@@ -145,12 +142,8 @@ target_position = Vector3(0, -100, 0)
 
 [node name="WeaponHolder" type="Node3D" parent="Neck"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.4)
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0.5, -0.5, -0.3)
 script = ExtResource("2_mm2sc")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Neck/WeaponHolder"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.3)
-mesh = SubResource("TextMesh_j7ro6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Neck"]
 libraries = {

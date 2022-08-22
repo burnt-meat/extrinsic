@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Resource",
+"class": &"Weapon",
+"language": &"GDScript",
+"path": "res://Resources/Scripts/Weapon.gd"
+}]
+_global_script_class_icons={
+"Weapon": ""
+}
+
 [application]
 
 config/name="extrinsic"
@@ -18,6 +28,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GunApi="*res://APIs/GunAPI.gd"
+KeybindApi="*res://APIs/KeybindAPI.gd"
 
 [display]
 
