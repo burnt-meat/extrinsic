@@ -27,12 +27,27 @@ var crouch_start_rotation: Vector3
 @onready var Camera: Camera3D = $Neck/Camera
 @onready var SlideRay: RayCast3D = $SlideRay
 @onready var AP: AnimationPlayer = $AnimationPlayer
-
+@onready var WeaponHolder: Node3D = %WeaponHolder
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 1.5
+
+
+var inIFrame: bool = false
+
+var health: float = 10.0:
+	set(val):
+		if inIFrame:
+			pass
+		else:
+			print("health changed")
+			if val < health:
+				inIFrame = true
+				get_tree().create_timer(.5).connect("timeout", func(): inIFrame = false)
+			health = val
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GunApi.create_weapon("Rifle", 2, .1, [], "res://Scenes/Guns/Rifle.tscn")
+	GunApi.create_weapon("Boom", 0, 2, [BoomGunEffect.new()], "res://Scenes/Guns/Boom.tscn")
 
 func _input(event):
 	if event is InputEventKey:
@@ -60,8 +75,10 @@ func _physics_process(delta):
 	
 	Camera.fov = lerp(Camera.fov, 75 + velocity.length(), 0.1)
 	
-	if Input.is_action_just_pressed("sprint"):
+	if Input.is_action_just_pressed("weapon1"):
 		GunApi.switch_weapon(0)
+	if Input.is_action_just_pressed("weapon2"):
+		GunApi.switch_weapon(1)
 	
 	if Input.is_action_pressed("crouch"):
 		if not crouching:

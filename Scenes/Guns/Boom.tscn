@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://j3gtw84j7hp2"]
+[gd_scene load_steps=2 format=3 uid="uid://cs1fg8t2q1su3"]
 
 [sub_resource type="TextMesh" id="TextMesh_j7ro6"]
-text = "rifle goes"
+text = "goes boom"
 
-[node name="RifleModel" type="MeshInstance3D"]
+[node name="BoomModel" type="MeshInstance3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.4)
 mesh = SubResource("TextMesh_j7ro6")

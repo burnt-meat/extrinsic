@@ -19,3 +19,7 @@ transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 0, 0, 
 [node name="HitBox" type="CollisionShape3D" parent="."]
 transform = Transform3D(-2, 0, 4.31697e-07, 0, 2, 0, -3.01992e-07, 0, -2.859, 0, 0, 0)
 shape = SubResource("SphereShape3D_mcysx")
+
+[node name="Ray" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.27591)
+target_position = Vector3(0, 0, -2)

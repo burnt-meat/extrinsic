@@ -6,9 +6,6 @@ extends Node3D
 @onready var Sun: DirectionalLight3D = $Sun
 @onready var Player: CharacterBody3D = $Player
 
-func _process(delta):
-	Sun.look_at(Player.position)
-
 func spawnFish() -> void:
 	var newFish := FishEnemy.instantiate()
 	newFish.position = Vector3(0, 10, 0)

@@ -64,11 +64,6 @@ material = SubResource("StandardMaterial3D_mrd5q")
 
 [node name="Player" parent="." instance=ExtResource("1_mne1k")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18.4284, 4, 0)
-JUMP_VELOCITY = 7.0
-DEFAULT_SPEED = 5.5
-MAX_SPEED = 21.0
-SPEED_UP_RATE = 1.5
-sensitivity = 0.2
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
