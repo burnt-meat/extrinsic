@@ -16,12 +16,16 @@ func _ready():
 	Player = get_tree().get_nodes_in_group("Player")[0]
 
 func _integrate_forces(state):
-	apply_force((Player.position - position) * Vector3(1, 0, 1) * SPEED)
-	
-	if Ray.is_colliding() and Ray.get_collider().is_in_group("Player"):
-		Ray.get_collider().health -=1
-	
 	look_at(Player.position)
+	apply_force((Player.position - position) * Vector3(1, 0, 1) * SPEED)
+
+	if not Ray.is_colliding():
+		return
+
+	var collider = Ray.get_collider()
+
+	if Ray.is_colliding() and collider.is_in_group("Player"):
+		collider.health -=1
 
 func die():
 	queue_free()

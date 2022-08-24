@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://2c2q7kum1ead"]
 
 [ext_resource type="Script" path="res://Scripts/Explosion.gd" id="1_onbt1"]
-[ext_resource type="AudioStream" uid="uid://raeoweh7oqgs" path="res://Assets/SFX/explosion.wav" id="3_kjs4j"]
+[ext_resource type="AudioStream" uid="uid://ogpriiy5ud0i" path="res://Assets/SFX/explosion2.wav" id="2_3ebam"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ldr6n"]
 radius = 10.0
@@ -27,4 +27,5 @@ shape = SubResource("SphereShape3D_ldr6n")
 mesh = SubResource("SphereMesh_0gd3i")
 
 [node name="SFX" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_kjs4j")
+stream = ExtResource("2_3ebam")
+bus = &"SFX"
