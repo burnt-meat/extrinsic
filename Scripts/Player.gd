@@ -46,6 +46,7 @@ var health: float = 10.0:
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	ScoreApi.connect("score_changed", func(): print(ScoreApi.score))
 	GunApi.create_weapon("Rifle", 2, .1, [], "res://Scenes/Guns/Rifle.tscn")
 	GunApi.create_weapon("Boom", 0, 2, [BoomGunEffect.new()], "res://Scenes/Guns/Boom.tscn")
 
@@ -91,14 +92,19 @@ func _physics_process(delta):
 			
 			if not in_air:
 				Camera.rotation.z = lerp(Camera.rotation.z, Vector2(f.x, f.z).angle() * .1, 0.1)
+				WeaponHolder.rotation.z = lerp(WeaponHolder.rotation.z, Vector2(f.x, f.z).angle(), 0.1)
 		else:
 			sliding = false
 			Camera.rotation.z = lerp(Camera.rotation.z, 0.0, 0.1)
+			WeaponHolder.rotation.z = lerp(WeaponHolder.rotation.z, 0.0, 0.1)
 		$Neck.position.y = 0.5
 	else:
 		crouching = false
 		$Neck.position.y = 1
 		Camera.rotation.z = lerp(Camera.rotation.z, 0.0, 0.1)
+		WeaponHolder.rotation.z = lerp(WeaponHolder.rotation.z, 0.0, 0.1)
+	WeaponHolder.rotation.z = clamp(WeaponHolder.rotation.z, -PI/3, PI/3)
+	
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta

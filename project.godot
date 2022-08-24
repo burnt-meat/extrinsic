@@ -41,6 +41,7 @@ config/icon="res://icon.png"
 
 GunApi="*res://APIs/GunAPI.gd"
 KeybindApi="*res://APIs/KeybindAPI.gd"
+ScoreApi="*res://APIs/ScoreAPI.gd"
 
 [display]
 

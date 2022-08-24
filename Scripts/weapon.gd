@@ -18,7 +18,6 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("shoot") and not onCooldown[currentWeapon]:
 		onCooldown[currentWeapon] = true
-		print(onCooldown)
 		disableCooldown(currentWeapon, cooldown)
 		AP.stop()
 		AP.play("shoot")
