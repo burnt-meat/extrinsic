@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://x4oapxp0rxuy"]
+
+[ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="1_ru5m5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jsv7c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfagg"]
+
+[node name="EnemySpawner" type="RigidDynamicBody3D"]
+axis_lock_angular_y = true
+gravity_scale = 0.0
+script = ExtResource("1_ru5m5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_jsv7c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_cfagg")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

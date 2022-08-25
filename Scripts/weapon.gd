@@ -23,7 +23,11 @@ func _process(delta):
 		AP.play("shoot")
 		for effect in effects:
 			await effect.trigger(self, Ray)
-		if Ray.is_colliding() and Ray.get_collider().is_in_group("Enemy"):
+		
+		if not Ray.is_colliding():
+			return
+		
+		if Ray.get_collider().is_in_group("Enemy"):
 			Ray.get_collider().health -= damage
 
 func disableCooldown(id: int, cd: float):

@@ -18,13 +18,16 @@ func _ready():
 func _integrate_forces(state):
 	look_at(Player.position)
 	apply_force((Player.position - position) * Vector3(1, 0, 1) * SPEED)
-
+	
 	if not Ray.is_colliding():
 		return
-
+		
 	var collider = Ray.get_collider()
-
-	if Ray.is_colliding() and collider.is_in_group("Player"):
+	
+	if not collider:
+		return
+	
+	if collider.is_in_group("Player"):
 		collider.health -=1
 
 func die():

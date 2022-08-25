@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgiouak4nco8d"]
+[gd_scene load_steps=11 format=3 uid="uid://cgiouak4nco8d"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_d6sg4"]
 [ext_resource type="PackedScene" uid="uid://c0onwct0xl47" path="res://Scenes/Player.tscn" id="1_mne1k"]
 [ext_resource type="Texture2D" uid="uid://dlvq3r7wvyv4c" path="res://Assets/Dark/texture_01.png" id="2_jlrkr"]
 [ext_resource type="AudioStream" uid="uid://dwy3muicsdb12" path="res://Assets/Music/ArenaTheme.mp3" id="4_snqov"]
+[ext_resource type="PackedScene" uid="uid://x4oapxp0rxuy" path="res://Scenes/EnemySpawner.tscn" id="5_80mwx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lictn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -72,6 +73,23 @@ autostart = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_snqov")
-autoplay = true
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_80mwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114881, 8.28517, -0.597773)
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("5_80mwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114881, 8.28517, -0.597773)
+
+[node name="EnemySpawner3" parent="." instance=ExtResource("5_80mwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114881, 8.28517, -0.597773)
+
+[node name="EnemySpawner4" parent="." instance=ExtResource("5_80mwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114881, 8.28517, -0.597773)
+
+[node name="EnemySpawner5" parent="." instance=ExtResource("5_80mwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114881, 8.28517, -0.597773)
+
+[node name="EnemySpawner6" parent="." instance=ExtResource("5_80mwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114881, 8.28517, -0.597773)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_spawnTick"]

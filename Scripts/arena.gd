@@ -12,5 +12,5 @@ func spawnFish() -> void:
 	EnemyController.add_child(newFish)
 
 func _spawnTick() -> void:
-	spawnFish()
+	pass
 	

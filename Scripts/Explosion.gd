@@ -15,6 +15,8 @@ func _explode():
 #		var c := PhysicsRayQueryParameters3D.create(position, object.position)
 #		var result = space_state.intersect_ray(c)
 #		print(result)
+		if object.is_in_group("Enemy"):
+			object.health -= 3
 		if object is RigidDynamicBody3D:
 			object.apply_impulse((object.position - position) * 5)
 			ScoreApi.add_score(10, "Enemy knocked back!")
