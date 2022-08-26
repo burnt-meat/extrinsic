@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cs1fg8t2q1su3"]
 
-[sub_resource type="TextMesh" id="TextMesh_j7ro6"]
-text = "goes boom"
+[ext_resource type="PackedScene" uid="uid://depdab1cq88nx" path="res://Assets/Models/boom.glb" id="1_erckr"]
 
 [node name="BoomModel" type="MeshInstance3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.4)
-mesh = SubResource("TextMesh_j7ro6")
+
+[node name="boom" parent="." instance=ExtResource("1_erckr")]

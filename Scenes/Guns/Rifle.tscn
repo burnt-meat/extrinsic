@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://j3gtw84j7hp2"]
 
-[sub_resource type="TextMesh" id="TextMesh_j7ro6"]
-text = "rifle goes"
+[ext_resource type="PackedScene" uid="uid://ba87bp0nyufls" path="res://Assets/Models/rifle.glb" id="1_ytmu5"]
 
 [node name="RifleModel" type="MeshInstance3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.4)
-mesh = SubResource("TextMesh_j7ro6")
+
+[node name="rifle" parent="." instance=ExtResource("1_ytmu5")]
