@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnsrv2jsxpxgg"
-path.s3tc="res://.godot/imported/good gun.png-a3194d31f0db681945f44335741945d0.s3tc.ctex"
-path.etc2="res://.godot/imported/good gun.png-a3194d31f0db681945f44335741945d0.etc2.ctex"
+uid="uid://mu57mms8a8rf"
+path.s3tc="res://.godot/imported/wood.png-5644a46ff2f5a24d6ebbaf579af6e32b.s3tc.ctex"
+path.etc2="res://.godot/imported/wood.png-5644a46ff2f5a24d6ebbaf579af6e32b.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/good gun.png"
-dest_files=["res://.godot/imported/good gun.png-a3194d31f0db681945f44335741945d0.s3tc.ctex", "res://.godot/imported/good gun.png-a3194d31f0db681945f44335741945d0.etc2.ctex"]
+source_file="res://Assets/wood.png"
+dest_files=["res://.godot/imported/wood.png-5644a46ff2f5a24d6ebbaf579af6e32b.s3tc.ctex", "res://.godot/imported/wood.png-5644a46ff2f5a24d6ebbaf579af6e32b.etc2.ctex"]
 
 [params]
 

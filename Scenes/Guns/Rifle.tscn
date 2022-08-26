@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ba87bp0nyufls" path="res://Assets/Models/rifle.glb" id="1_ytmu5"]
 
-[node name="RifleModel" type="MeshInstance3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.4)
+[node name="Node3D" type="Node3D"]
 
 [node name="rifle" parent="." instance=ExtResource("1_ytmu5")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, 0, 0.1, -0.4)

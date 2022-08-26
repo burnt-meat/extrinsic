@@ -23,3 +23,9 @@ shape = SubResource("SphereShape3D_mcysx")
 [node name="Ray" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.27591)
 target_position = Vector3(0, 0, -2)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 2.1)
+light_color = Color(0.901961, 0.901961, 0.901961, 1)
+light_energy = 5.0
+omni_range = 8.34878

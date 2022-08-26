@@ -2,22 +2,34 @@
 
 [ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="1_ru5m5"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_jsv7c"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_pncd7"]
+top_radius = 0.0
+bottom_radius = 4.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfagg"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2fg01"]
+radius = 4.0
 
 [node name="EnemySpawner" type="RigidDynamicBody3D"]
+axis_lock_linear_y = true
 axis_lock_angular_y = true
 gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_ru5m5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_jsv7c")
+mesh = SubResource("CylinderMesh_pncd7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_cfagg")
+shape = SubResource("CylinderShape3D_2fg01")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1, 0)
+light_color = Color(0.364706, 0.878431, 0.439216, 1)
+light_energy = 20.0
+spot_range = 15.0
+spot_angle = 15.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

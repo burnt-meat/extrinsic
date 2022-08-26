@@ -19,12 +19,14 @@ func _ready():
 	$SpawnTimer.start()
 
 func _integrate_forces(state):
-	apply_force((Player.position - position) * Vector3(1, 0, 1) * 5)
+	if position.distance_to(Player.position) > 15:
+		apply_force((Player.position - position) * Vector3(1, 0, 1) * SPEED)
+	else:
+		apply_force(-(Player.position - position) * Vector3(1, 0, 1) * SPEED)
 
 func spawnFish() -> void:
 	var newFish := FishEnemy.instantiate()
 	newFish.position = position
-	await get_tree().create_timer(1).timeout
 	get_tree().get_current_scene().get_node("Enemies").add_child(newFish)
 
 func die():
