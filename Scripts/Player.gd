@@ -49,6 +49,7 @@ func _ready():
 	ScoreApi.connect("score_changed", func(): print(ScoreApi.score))
 	GunApi.create_weapon("Rifle", 2, .1, [], "res://Scenes/Guns/Rifle.tscn")
 	GunApi.create_weapon("Boom", 0, 2, [BoomGunEffect.new()], "res://Scenes/Guns/Boom.tscn")
+	GunApi.create_weapon("HandCannon", 20, 4, [], "res://Scenes/Guns/HandCannon.tscn")
 
 func _input(event):
 	if event is InputEventKey:
@@ -80,6 +81,8 @@ func _physics_process(delta):
 		GunApi.switch_weapon(0)
 	if Input.is_action_just_pressed("weapon2"):
 		GunApi.switch_weapon(1)
+	if Input.is_action_just_pressed("weapon3"):
+		GunApi.switch_weapon(2)
 	
 	if Input.is_action_pressed("crouch"):
 		if not crouching:
