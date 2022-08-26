@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmshcbvmcw4ub"]
+
+[sub_resource type="TextMesh" id="TextMesh_j7ro6"]
+text = "armata ręczna"
+
+[node name="HandCannonModel" type="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.4)
+mesh = SubResource("TextMesh_j7ro6")
