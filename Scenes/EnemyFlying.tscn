@@ -9,7 +9,7 @@ bounce = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_mcysx"]
 radius = 0.943249
 
-[node name="Enemy" type="RigidDynamicBody3D"]
+[node name="Enemy" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_3ytot")
 script = ExtResource("1_1cujg")
 

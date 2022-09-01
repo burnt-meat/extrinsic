@@ -17,7 +17,7 @@ func _explode():
 #		print(result)
 		if object.is_in_group("Enemy"):
 			object.health -= 3
-		if object is RigidDynamicBody3D:
+		if object is RigidBody3D:
 			object.apply_impulse((object.position - position) * 5)
 			ScoreApi.add_score(10, "Enemy knocked back!")
 			amount_hit += 1

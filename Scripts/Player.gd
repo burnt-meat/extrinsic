@@ -59,8 +59,8 @@ func _input(event):
 				pass
 	
 	if event is InputEventMouseMotion:
-		rotate_y(-deg2rad(event.relative.x) * sensitivity)
-		Neck.rotate_x(-deg2rad(event.relative.y) * sensitivity)
+		rotate_y(-deg_to_rad(event.relative.x) * sensitivity)
+		Neck.rotate_x(-deg_to_rad(event.relative.y) * sensitivity)
 		Neck.rotation.x = clamp(Neck.rotation.x, -PI/2, PI/2)
 		
 	if event is InputEventMouseButton && Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:

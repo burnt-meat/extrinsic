@@ -9,7 +9,7 @@ bottom_radius = 4.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2fg01"]
 radius = 4.0
 
-[node name="EnemySpawner" type="RigidDynamicBody3D"]
+[node name="EnemySpawner" type="RigidBody3D"]
 axis_lock_linear_y = true
 axis_lock_angular_y = true
 gravity_scale = 0.0
