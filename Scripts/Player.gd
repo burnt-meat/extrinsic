@@ -47,8 +47,8 @@ var health: float = 10.0:
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ScoreApi.connect("score_changed", func(): print(ScoreApi.score))
-	GunApi.create_weapon("Rifle", 2, .1, [], "res://Scenes/Guns/Rifle.tscn")
-	GunApi.create_weapon("Boom", 0, 2, [BoomGunEffect.new()], "res://Scenes/Guns/Boom.tscn")
+	GunApi.create_weapon("Rifle", 1, .3, [], "res://Scenes/Guns/Rifle.tscn")
+	GunApi.create_weapon("Boom", 0, 10, [BoomGunEffect.new()], "res://Scenes/Guns/Boom.tscn")
 
 func _input(event):
 	if event is InputEventKey:

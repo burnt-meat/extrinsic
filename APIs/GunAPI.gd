@@ -16,8 +16,11 @@ func switch_weapon(id: int) -> void:
 	holder.damage = w.damage
 	holder.cooldown = w.cooldown
 	for child in holder.get_children():
-		child.queue_free()
-	holder.add_child(w.modelScene.instantiate())
+		if child.is_in_group("model"):
+			child.queue_free()
+	var gun_model = w.modelScene.instantiate()
+	gun_model.add_to_group("model")
+	holder.add_child(gun_model)
 	holder.effects = w.effects
 	holder.currentWeapon = id
 	emit_signal("switched_weapon", w)
@@ -32,6 +35,7 @@ func create_weapon(name: String, damage: float, cooldown: float, effects: Array,
 	weapon.cooldown = cooldown
 	weapon.effects = effects
 	weapon.modelScene = load(scenePath)
+	weapon.modelScene
 	loadedWeapons.append(weapon)
 	holder.onCooldown[loadedWeapons.size() - 1] = false
 	
