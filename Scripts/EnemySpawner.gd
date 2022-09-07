@@ -5,11 +5,12 @@ var Player: CharacterBody3D
 
 @onready var FishEnemy: PackedScene = preload("res://Scenes/EnemyFlying.tscn")
 
-
 @export var health: float = 20:
 	set(value):
 		health = value
+		$HitSFX.play()
 		if value <= 0:
+			$HitSFX.play()
 			die()
 @export var SPEED: float = 1
 

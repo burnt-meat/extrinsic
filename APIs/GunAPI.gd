@@ -2,7 +2,11 @@ extends Node
 
 var loadedWeapons: Array[Resource] = []
 
-signal switched_weapon(res: Resource)
+var onCooldown := {}
+var canShoot := {}
+
+signal switched_weapon(res: Resource, id: int)
+signal started_cooldown(id: int)
 
 var currentWeapon: int = 0
 
@@ -25,7 +29,16 @@ func switch_weapon(id: int) -> void:
 	holder.currentWeapon = id
 	emit_signal("switched_weapon", w)
 
-# TODO: Dict -> Resource, needed for changing meshes etc.
+# Starts a cooldown on a weapon
+func startCooldown(id: int):
+	var w := loadedWeapons[id]
+	canShoot[w.id] = false
+	var t := get_tree().create_timer(w.cooldown)
+	t.connect("timeout", func(): canShoot[w.id] = true)
+	onCooldown[w.id] = t
+	emit_signal("started_cooldown", id)
+
+
 # Creates a weapon, and returns it's ID in the GunAPI register
 func create_weapon(name: String, damage: float, cooldown: float, effects: Array, scenePath: String) -> int:
 	var holder := _get_weapon_holder()
@@ -36,7 +49,9 @@ func create_weapon(name: String, damage: float, cooldown: float, effects: Array,
 	weapon.effects = effects
 	weapon.modelScene = load(scenePath)
 	weapon.modelScene
+	weapon.id = loadedWeapons.size()
+	onCooldown[weapon.id] = Timer.new()
+	canShoot[weapon.id] = true
 	loadedWeapons.append(weapon)
-	holder.onCooldown[loadedWeapons.size() - 1] = false
 	
-	return loadedWeapons.size() - 1
+	return weapon.id

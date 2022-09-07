@@ -70,7 +70,7 @@ material = SubResource("StandardMaterial3D_mrd5q")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19.6146, 4.77679, -1.00867)
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]

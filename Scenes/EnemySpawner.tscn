@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://x4oapxp0rxuy"]
+[gd_scene load_steps=5 format=3 uid="uid://x4oapxp0rxuy"]
 
 [ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="1_ru5m5"]
+[ext_resource type="AudioStream" uid="uid://c57o57rkp48fr" path="res://Assets/SFX/hit.wav" id="2_q0bdt"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_pncd7"]
 top_radius = 0.0
@@ -31,5 +32,9 @@ light_color = Color(0.364706, 0.878431, 0.439216, 1)
 light_energy = 20.0
 spot_range = 15.0
 spot_angle = 15.0
+
+[node name="HitSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_q0bdt")
+bus = &"SFX"
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

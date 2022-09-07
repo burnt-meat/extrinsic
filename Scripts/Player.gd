@@ -17,9 +17,9 @@ var crouch_start_rotation: Vector3
 
 @export var JUMP_VELOCITY := 7.0
 
-@export var DEFAULT_SPEED := 5.5
-@export var MAX_SPEED := 21.0
-@export var SPEED_UP_RATE := 1.5
+@export var DEFAULT_SPEED := 6
+@export var MAX_SPEED := 28.0
+@export var SPEED_UP_RATE := 3
 
 @export var sensitivity := 0.2
 
@@ -47,7 +47,7 @@ var health: float = 10.0:
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ScoreApi.connect("score_changed", func(): print(ScoreApi.score))
-	GunApi.create_weapon("Rifle", 1, .3, [], "res://Scenes/Guns/Rifle.tscn")
+	GunApi.create_weapon("Rifle", 1, .2, [], "res://Scenes/Guns/Rifle.tscn")
 	GunApi.create_weapon("Boom", 0, 10, [BoomGunEffect.new()], "res://Scenes/Guns/Boom.tscn")
 
 func _input(event):

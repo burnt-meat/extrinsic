@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv6dr5qq7hlvs"]
+[gd_scene load_steps=6 format=3 uid="uid://cv6dr5qq7hlvs"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyFlying.gd" id="1_1cujg"]
 [ext_resource type="PackedScene" uid="uid://g8ou0cssc0jk" path="res://Assets/Models/fish.glb" id="2_s3l7e"]
+[ext_resource type="AudioStream" uid="uid://c57o57rkp48fr" path="res://Assets/SFX/hit.wav" id="3_upj22"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3ytot"]
 bounce = 1.0
@@ -29,3 +30,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 2.1)
 light_color = Color(0.901961, 0.901961, 0.901961, 1)
 light_energy = 5.0
 omni_range = 8.34878
+
+[node name="HitSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_upj22")
+bus = &"SFX"
+attenuation_filter_db = 0.0

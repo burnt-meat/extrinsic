@@ -5,6 +5,7 @@ extends Node3D
 @onready var Player: CharacterBody3D = $"../.."
 @onready var Flash: Sprite3D = $Flash
 @onready var FlashTimer: Timer = $Flash/Timer
+@onready var GunSFX: AudioStreamPlayer = $GunSFX
 
 
 var damage: float = 0
@@ -13,16 +14,13 @@ var effects: Array[Resource] = []
 
 var currentWeapon: int
 
-var onCooldown := {}
-
 func _ready():
 	Ray.add_exception(Player)
 
 func _process(delta):
-	if Input.is_action_just_pressed("shoot") and not onCooldown[currentWeapon]:
-		
-		onCooldown[currentWeapon] = true
-		disableCooldown(currentWeapon, cooldown)
+	if Input.is_action_just_pressed("shoot") and GunApi.canShoot[currentWeapon]:
+		GunApi.startCooldown(currentWeapon)
+		GunSFX.play()
 		AP.stop()
 		AP.play("shoot")
 		flash()
@@ -39,10 +37,6 @@ func _process(delta):
 func flash():
 	Flash.visible = true
 	FlashTimer.start()
-
-func disableCooldown(id: int, cd: float):
-	get_tree().create_timer(cd).connect("timeout", func(): onCooldown[id] = false)
-	
 
 
 func _on_timer_timeout():
