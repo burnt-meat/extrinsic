@@ -13,7 +13,7 @@ var Player: CharacterBody3D
 
 @onready var Ray: RayCast3D = $Ray
 
-func _ready():
+func _enter_tree():
 	add_to_group("Enemy")
 	Player = get_tree().get_nodes_in_group("Player")[0]
 

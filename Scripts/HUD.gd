@@ -9,12 +9,12 @@ func _ready():
 
 
 func _change_weapon_reloadtimer(id: int):
-	if GunApi.onCooldown[id].time_left > 0:
-		ReloadTimer.value = (GunApi.onCooldown[id].time_left / GunApi.loadedWeapons[id].cooldown) * 100
+	if GunApi.on_cooldown[id].time_left > 0:
+		ReloadTimer.value = (GunApi.on_cooldown[id].time_left / GunApi.loaded_weapons[id].cooldown) * 100
 	else:
 		ReloadTimer.value = 0
 	ReloadPoll.start()
 	
 
 func _on_reload_poll_timeout():
-	_change_weapon_reloadtimer(WeaponHolder.currentWeapon)
+	_change_weapon_reloadtimer(WeaponHolder.current_weapon)

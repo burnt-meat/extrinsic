@@ -4,8 +4,8 @@ extends Node3D
 @onready var FishEnemy: PackedScene = preload("res://Scenes/EnemyFlying.tscn")
 @onready var UFO: PackedScene = preload("res://Scenes/EnemySpawner.tscn")
 @onready var EnemyController: Node3D = $Enemies
-@onready var Sun: DirectionalLight3D = $Sun
 @onready var Player: CharacterBody3D = $Player
+@onready var Sun: DirectionalLight3D = $Sun
 
 func spawnFish() -> void:
 	var newFish := FishEnemy.instantiate()
@@ -18,5 +18,6 @@ func spawnUFO() -> void:
 	EnemyController.add_child(newUFO)
 
 func _spawnTick() -> void:
+	SpawnTimer.wait_time = randi_range(10, 20)
+	Sun.light_energy += 1
 	spawnUFO()
-	

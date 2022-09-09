@@ -5,7 +5,7 @@ var Player: CharacterBody3D
 
 @onready var FishEnemy: PackedScene = preload("res://Scenes/EnemyFlying.tscn")
 
-@export var health: float = 20:
+@export var health: float = 10:
 	set(value):
 		health = value
 		$HitSFX.play()

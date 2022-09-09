@@ -25,13 +25,19 @@ shape = SubResource("SphereShape3D_mcysx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.27591)
 target_position = Vector3(0, 0, -2)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 2.1)
-light_color = Color(0.901961, 0.901961, 0.901961, 1)
-light_energy = 5.0
-omni_range = 8.34878
-
 [node name="HitSFX" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_upj22")
 bus = &"SFX"
 attenuation_filter_db = 0.0
+
+[node name="EyeLight1" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 1.1, -2.3)
+light_color = Color(1, 0, 0, 1)
+light_energy = 10.0
+spot_angle = 5.0
+
+[node name="EyeLight2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 1.1, -2.3)
+light_color = Color(1, 0, 0, 1)
+light_energy = 10.0
+spot_angle = 5.0
