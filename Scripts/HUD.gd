@@ -9,6 +9,7 @@ extends Control
 @onready var AP: AnimationPlayer = $AnimationPlayer
 
 var entries_to_show: Array = []
+var playing: bool = false
 
 func _ready():
 	GunApi.connect("started_cooldown", _change_weapon_reloadtimer)
@@ -19,9 +20,16 @@ func _ready():
 func _update_score_counter():
 	var entry := ScoreApi.get_latest_ledger_entry()
 	
-	print("updating score counter")
-	print(entry)
+	entries_to_show.append(entry)
 	
+	print("size %s" % entries_to_show.size())
+	
+	while entries_to_show.size() > 0:
+		await _play_entry(entries_to_show[0])
+		entries_to_show.pop_front()
+	
+
+func _play_entry(entry: Dictionary):
 	if not entry.has("amount"):
 		return
 	
@@ -31,6 +39,7 @@ func _update_score_counter():
 	AP.play_backwards("Merge")
 	await get_tree().create_timer(1).timeout
 	AP.play("Merge")
+	await AP.animation_finished
 	
 
 func _change_weapon_reloadtimer(id: int):
