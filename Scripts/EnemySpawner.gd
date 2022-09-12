@@ -11,6 +11,7 @@ var Player: CharacterBody3D
 		$HitSFX.play()
 		if value <= 0:
 			$HitSFX.play()
+			ScoreApi.add_score(3, "Killed a Spawner")
 			die()
 @export var SPEED: float = 1
 

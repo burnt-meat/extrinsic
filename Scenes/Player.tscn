@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0onwct0xl47"]
+[gd_scene load_steps=17 format=3 uid="uid://c0onwct0xl47"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_66hsi"]
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="2_mm2sc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://chmowq51hp4g4" path="res://Assets/crosshair.png" id="3_rkxvw"]
 [ext_resource type="AudioStream" uid="uid://ja808e46bx0" path="res://Assets/SFX/rifle.wav" id="5_eyqwt"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="5_ytuax"]
+[ext_resource type="FontFile" uid="uid://k0ewcp0qnnf6" path="res://Assets/Fonts/PICO-8 mono.ttf" id="7_8ujlf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_euc82"]
 
@@ -79,6 +80,63 @@ _data = {
 "view_bob": SubResource("Animation_p5k36")
 }
 
+[sub_resource type="Animation" id="Animation_vdjw8"]
+resource_name = "Merge"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Score/ScoreIncrementShower:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(383.99, -0.25, 0, 0.5, -0.5, 191.99, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Score/ReasonShower:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.5, -0.5, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Score/ScoreIncrementShower:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.5, -0.5, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_3cq3q"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Score/ScoreIncrementShower:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(383.99, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0mbrw"]
+_data = {
+"Merge": SubResource("Animation_vdjw8"),
+"RESET": SubResource("Animation_3cq3q")
+}
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 4, 1)
 floor_block_on_wall = false
@@ -147,6 +205,7 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_ytuax")
+metadata/_edit_lock_ = true
 
 [node name="CrossHair" type="TextureRect" parent="HUD"]
 layout_mode = 1
@@ -173,21 +232,76 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -28.0
-offset_right = 128.0
+offset_left = -63.99
+offset_top = -12.0
+offset_right = 64.01
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
+percent_visible = false
+
+[node name="Score" type="Control" parent="HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreCounter" type="RichTextLabel" parent="HUD/Score"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 172.0
+offset_right = 300.0
+offset_bottom = 40.0
+grow_horizontal = 2
+auto_translate = false
+theme_override_fonts/normal_font = ExtResource("7_8ujlf")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "0000"
+scroll_active = false
+
+[node name="ReasonShower" type="RichTextLabel" parent="HUD/Score"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 364.0
+offset_top = 40.0
+offset_right = 492.0
+offset_bottom = 128.0
+grow_horizontal = 2
+auto_translate = false
+theme_override_fonts/normal_font = ExtResource("7_8ujlf")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+
+[node name="ScoreIncrementShower" type="RichTextLabel" parent="HUD/Score"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 363.99
+offset_right = 491.991
+offset_bottom = 40.0
+grow_horizontal = 2
+auto_translate = false
+theme_override_fonts/normal_font = ExtResource("7_8ujlf")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+text_direction = 2
 
 [node name="ReloadPoll" type="Timer" parent="HUD"]
 wait_time = 0.05
 
-[node name="ammo left" type="RichTextLabel" parent="HUD"]
-layout_mode = 0
-offset_right = 576.0
-offset_bottom = 32.0
-bbcode_enabled = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
+libraries = {
+"": SubResource("AnimationLibrary_0mbrw")
+}
 
 [connection signal="timeout" from="Neck/WeaponHolder/Flash/Timer" to="Neck/WeaponHolder" method="_on_timer_timeout"]
 [connection signal="timeout" from="HUD/ReloadPoll" to="HUD" method="_on_reload_poll_timeout"]

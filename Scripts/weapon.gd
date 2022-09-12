@@ -5,7 +5,6 @@ extends Node3D
 @onready var Flash: Node3D = $Flash
 @onready var FlashTimer: Timer = $Flash/Timer
 @onready var GunSFX: AudioStreamPlayer = $GunSFX
-@onready var AmmoHUD: RichTextLabel = $"../../HUD/ammo left"
 
 var damage: float = 0
 var cooldown: float = .1
@@ -20,12 +19,10 @@ var reloading := {}
 
 
 func _ready():
-	GunApi.connect("switched_weapon", func(res, id): AmmoHUD.text = "[wave]you have %s ammo left[/wave]" % ammo[current_weapon].ammo_left)
 	Ray.add_exception(Player)
 
 func _process(delta):
 	if Input.is_action_just_pressed("reload"):
-		print("Reloading for %s gun number %s" % [str(GunApi.loaded_weapons[current_weapon].reload_time), str(current_weapon)])
 		reload(GunApi.loaded_weapons[current_weapon].reload_time, current_weapon)
 	
 	if full_auto:
@@ -41,9 +38,10 @@ func reload(time: float, id: int):
 	ammo[id].ammo_left = ammo[id].ammo_max
 	print("reloaded " + str(id))
 	reloading[id] = false
-	AmmoHUD.text = "[wave]you have %s ammo left[/wave]" % ammo[current_weapon].ammo_left
 
 func shoot() -> void:
+	if ammo[current_weapon].ammo_left <= 0 and not reloading[current_weapon]:
+		reload(GunApi.loaded_weapons[current_weapon].reload_time, current_weapon)
 	if ammo[current_weapon].ammo_left <= 0 or reloading[current_weapon]:
 		return
 	GunApi.start_cooldown(current_weapon)
@@ -58,7 +56,6 @@ func shoot() -> void:
 	if Ray.get_collider().is_in_group("Enemy"):
 		Ray.get_collider().health -= damage
 	ammo[current_weapon].ammo_left -= 1
-	AmmoHUD.text = "[wave]you have %s ammo left[/wave]" % ammo[current_weapon].ammo_left
 	
 
 func flash():
