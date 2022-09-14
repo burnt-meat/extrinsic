@@ -18,6 +18,6 @@ func spawnUFO() -> void:
 	EnemyController.add_child(newUFO)
 
 func _spawnTick() -> void:
-	SpawnTimer.wait_time = randi_range(10, 20)
+	SpawnTimer.wait_time = 15 - ScoreApi.score * .01
 	Sun.light_energy += 1
 	spawnUFO()

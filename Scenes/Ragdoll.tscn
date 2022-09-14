@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://do1ayatd0jhtj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_653n1"]
+
+[node name="Ragdoll" type="RigidBody3D"]
+
+[node name="hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_653n1")

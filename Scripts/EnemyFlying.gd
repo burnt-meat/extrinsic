@@ -19,6 +19,8 @@ func _enter_tree():
 	Player = get_tree().get_nodes_in_group("Player")[0]
 
 func _integrate_forces(state):
+	if !Player:
+		return
 	look_at(Player.position)
 	apply_force((Player.position - position) * Vector3(1, 0, 1) * SPEED)
 	

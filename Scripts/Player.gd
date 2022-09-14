@@ -12,6 +12,8 @@ var crouching: bool
 var sliding: bool
 var stop_sliding: bool
 
+var dead: bool = false
+
 var jump_start_height: float
 var crouch_start_rotation: Vector3
 
@@ -28,6 +30,10 @@ var crouch_start_rotation: Vector3
 @onready var SlideRay: RayCast3D = $SlideRay
 @onready var AP: AnimationPlayer = $AnimationPlayer
 @onready var WeaponHolder: Node3D = %WeaponHolder
+@onready var HUD: Control = $HUD
+
+@onready var Ragdoll: PackedScene = preload("res://Scenes/Ragdoll.tscn")
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 1.5
 
 
@@ -38,7 +44,8 @@ var health: float = 10.0:
 		if inIFrame:
 			pass
 		else:
-			print("health changed")
+			if val < 0 and not dead:
+				die()
 			if val < health:
 				inIFrame = true
 				get_tree().create_timer(.5).connect("timeout", func(): inIFrame = false)
@@ -49,6 +56,19 @@ func _ready():
 	ScoreApi.connect("score_changed", func(): print(ScoreApi.score))
 	GunApi.create_weapon("Rifle", 1, .2, 20, 1.0, true, [], "res://Scenes/Guns/Rifle.tscn")
 	GunApi.create_weapon("Boom", 0, 1, 2, 5.0, false, [BoomGunEffect.new()], "res://Scenes/Guns/Boom.tscn")
+
+func die():
+	dead = true
+	set_process(false)
+	set_process_input(false)
+	var ragdoll = Ragdoll.instantiate()
+	Neck.remove_child(Camera)
+	ragdoll.add_child(Camera)
+	var pos := position
+	get_tree().get_current_scene().add_child(ragdoll)
+	ragdoll.position = pos
+	HUD.died()
+
 
 func _input(event):
 	if event is InputEventKey:

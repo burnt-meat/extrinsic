@@ -21,6 +21,8 @@ func _ready():
 	$SpawnTimer.start()
 
 func _integrate_forces(state):
+	if !Player:
+		return
 	if position.distance_to(Player.position) > 15:
 		apply_force((Player.position - position) * Vector3(1, 0, 1) * SPEED)
 	else:

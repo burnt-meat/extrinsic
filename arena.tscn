@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgiouak4nco8d"]
+[gd_scene load_steps=11 format=3 uid="uid://cgiouak4nco8d"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_d6sg4"]
 [ext_resource type="PackedScene" uid="uid://c0onwct0xl47" path="res://Scenes/Player.tscn" id="1_mne1k"]
 [ext_resource type="Texture2D" uid="uid://dlvq3r7wvyv4c" path="res://Assets/Dark/texture_01.png" id="2_jlrkr"]
+[ext_resource type="PackedScene" uid="uid://cv6dr5qq7hlvs" path="res://Scenes/EnemyFlying.tscn" id="3_s1et0"]
 [ext_resource type="AudioStream" uid="uid://dwy3muicsdb12" path="res://Assets/Music/ArenaTheme.mp3" id="4_snqov"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lictn"]
@@ -65,10 +66,33 @@ height = 38.0472
 cone = true
 material = SubResource("StandardMaterial3D_mrd5q")
 
-[node name="Enemies" type="Node3D" parent="."]
-
 [node name="Player" parent="." instance=ExtResource("1_mne1k")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19.6146, 4.77679, -1.00867)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("3_s1et0")]
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("3_s1et0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.39265, 0)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("3_s1et0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.8468, 0)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("3_s1et0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.34626, 12.8468, 0)
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource("3_s1et0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.15641, 12.8468, 0)
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource("3_s1et0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.15641, 12.8468, 8.96643)
+
+[node name="Enemy7" parent="Enemies" instance=ExtResource("3_s1et0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68461, 12.8468, 8.96643)
+
+[node name="Enemy8" parent="Enemies" instance=ExtResource("3_s1et0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.75222, 12.8468, 8.96643)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 10.0
