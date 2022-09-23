@@ -5,6 +5,7 @@ extends Node3D
 @onready var Flash: Node3D = $Flash
 @onready var FlashTimer: Timer = $Flash/Timer
 @onready var GunSFX: AudioStreamPlayer = $GunSFX
+@onready var AmmoCounter: RichTextLabel = $"../../HUD/AmmoCounter"
 
 var damage: float = 0
 var cooldown: float = .1
@@ -22,6 +23,12 @@ func _ready():
 	Ray.add_exception(Player)
 
 func _process(delta):
+	AmmoCounter.text = "%s/%s" % [ammo[current_weapon].ammo_left, ammo[current_weapon].ammo_max]
+	
+	if reloading[current_weapon]:
+		position.y = -1
+	else:
+		position.y = -.5
 	if Input.is_action_just_pressed("reload"):
 		reload(GunApi.loaded_weapons[current_weapon].reload_time, current_weapon)
 	

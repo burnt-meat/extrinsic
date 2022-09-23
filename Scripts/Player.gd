@@ -47,6 +47,7 @@ var health: float = 10.0:
 			if val < 0 and not dead:
 				die()
 			if val < health:
+				Camera.trauma = 1
 				inIFrame = true
 				get_tree().create_timer(.5).connect("timeout", func(): inIFrame = false)
 			health = val

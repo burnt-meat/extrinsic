@@ -7,6 +7,7 @@ extends Control
 @onready var ReasonShower: RichTextLabel = $Score/ReasonShower
 @onready var ScoreIncrementShower: RichTextLabel = $Score/ScoreIncrementShower
 @onready var AP: AnimationPlayer = $AnimationPlayer
+@onready var AmmoCounter: RichTextLabel = $AmmoCounter
 
 func _ready():
 	GunApi.connect("started_cooldown", _change_weapon_reloadtimer)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0onwct0xl47"]
+[gd_scene load_steps=19 format=3 uid="uid://c0onwct0xl47"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_66hsi"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="2_41w83"]
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="2_mm2sc"]
 [ext_resource type="PackedScene" uid="uid://j3gtw84j7hp2" path="res://Scenes/Guns/Rifle.tscn" id="3_rf5c1"]
 [ext_resource type="Texture2D" uid="uid://chmowq51hp4g4" path="res://Assets/crosshair.png" id="3_rkxvw"]
@@ -12,21 +13,6 @@
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pgf71"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
-
-[sub_resource type="Animation" id="Animation_vfjan"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Neck/Camera:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_o1yrf"]
 resource_name = "hard_fall"
@@ -75,9 +61,38 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0fqxv"]
 _data = {
-"RESET": SubResource("Animation_vfjan"),
 "hard_fall": SubResource("Animation_o1yrf"),
 "view_bob": SubResource("Animation_p5k36")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ahkm"]
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="Animation" id="Animation_mg28k"]
+resource_name = "L"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("died:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("died:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00931261),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vdjw8"]
@@ -115,33 +130,6 @@ tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.5, -0.5, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5)
-}
-
-[sub_resource type="Animation" id="Animation_mg28k"]
-resource_name = "L"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("died:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("died:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.00931261),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_5r8tm"]
@@ -191,7 +179,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Camera" type="Camera3D" parent="Neck"]
 current = true
-near = 0.1
+near = 0.25
+script = ExtResource("2_41w83")
+noise = SubResource("FastNoiseLite_7ahkm")
 
 [node name="Ray" type="RayCast3D" parent="Neck/Camera"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -344,6 +334,22 @@ bbcode_enabled = true
 fit_content_height = true
 scroll_active = false
 text_direction = 2
+
+[node name="AmmoCounter" type="RichTextLabel" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+offset_right = 128.0
+grow_vertical = 0
+auto_translate = false
+theme_override_fonts/normal_font = ExtResource("7_8ujlf")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "10/30"
+fit_content_height = true
+scroll_active = false
 
 [node name="ReloadPoll" type="Timer" parent="HUD"]
 wait_time = 0.05
