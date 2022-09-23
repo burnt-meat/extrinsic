@@ -35,7 +35,10 @@ _global_script_class_icons={
 config/name="extrinsic"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
-config/icon="res://icon.png"
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color(1, 1, 1, 1)
 
 [autoload]
 

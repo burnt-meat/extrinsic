@@ -1,11 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbqbbafftsr1w"]
+[gd_scene load_steps=4 format=3 uid="uid://cbqbbafftsr1w"]
 
-[ext_resource type="FontFile" uid="uid://k0ewcp0qnnf6" path="res://Assets/Fonts/PICO-8 mono.ttf" id="1_f2jbp"]
+[ext_resource type="FontFile" uid="uid://brv66thscx7dm" path="res://Assets/Fonts/Perfect DOS VGA 437.ttf" id="1_5pxmc"]
+[ext_resource type="FontFile" uid="uid://k0ewcp0qnnf6" path="res://Assets/Fonts/PICO-8 mono.ttf" id="1_bg10b"]
 
 [sub_resource type="GDScript" id="GDScript_gfeht"]
 script/source = "extends Control
-
-
 
 func _on_button_pressed():
 	get_tree().change_scene_to_file(\"res://arena.tscn\");
@@ -21,7 +20,6 @@ grow_vertical = 2
 script = SubResource("GDScript_gfeht")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,7 +28,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -42,13 +39,12 @@ offset_right = 238.0
 offset_bottom = 28.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_f2jbp")
+theme_override_fonts/font = ExtResource("1_bg10b")
 theme_override_font_sizes/font_size = 36
-text = "play the game"
+text = "PLAY"
 flat = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -56,8 +52,23 @@ offset_left = -256.0
 offset_right = 256.0
 offset_bottom = 40.0
 grow_horizontal = 2
-theme_override_fonts/normal_font = ExtResource("1_f2jbp")
+theme_override_fonts/normal_font = ExtResource("1_5pxmc")
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center]you only have one chance[/center]"
+text = "[center]extrinsic[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_top = 35.0
+offset_right = 256.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("1_5pxmc")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]a game[/center]"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -20,6 +20,7 @@ func died():
 	ScoreIncrementShower.visible = false
 	ReloadTimer.visible = false
 	$CrossHair.visible = false
+	AmmoCounter.visible = false
 	await get_tree().create_timer(5).timeout
 	AP.play("L")
 	await get_tree().create_timer(5).timeout
@@ -33,7 +34,7 @@ func _update_score_counter():
 		return
 	
 	# TODO: localization
-	ReasonShower.text = entry.reason
+	ReasonShower.text = "[right]%s[/right]" % entry.reason.to_upper()
 	ScoreIncrementShower.text = "%s+" % entry.amount
 	AP.play_backwards("Merge")
 	await get_tree().create_timer(1).timeout

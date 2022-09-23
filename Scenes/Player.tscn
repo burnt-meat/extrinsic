@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0onwct0xl47"]
+[gd_scene load_steps=20 format=3 uid="uid://c0onwct0xl47"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_66hsi"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="2_41w83"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ja808e46bx0" path="res://Assets/SFX/rifle.wav" id="5_eyqwt"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="5_ytuax"]
 [ext_resource type="FontFile" uid="uid://k0ewcp0qnnf6" path="res://Assets/Fonts/PICO-8 mono.ttf" id="7_8ujlf"]
+[ext_resource type="FontFile" uid="uid://brv66thscx7dm" path="res://Assets/Fonts/Perfect DOS VGA 437.ttf" id="9_w5gpr"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_euc82"]
 
@@ -252,12 +253,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -63.99
-offset_top = -12.0
+offset_top = -20.0
 offset_right = 64.01
-offset_bottom = -1.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
-percent_visible = false
+show_percentage = false
 
 [node name="died" type="RichTextLabel" parent="HUD"]
 visible = false
@@ -291,8 +292,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 172.0
+offset_top = 8.0
 offset_right = 300.0
-offset_bottom = 40.0
+offset_bottom = 48.0
 grow_horizontal = 2
 auto_translate = false
 theme_override_fonts/normal_font = ExtResource("7_8ujlf")
@@ -303,16 +305,17 @@ scroll_active = false
 
 [node name="ReasonShower" type="RichTextLabel" parent="HUD/Score"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 364.0
-offset_top = 40.0
-offset_right = 492.0
-offset_bottom = 128.0
-grow_horizontal = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 294.0
+offset_top = 52.0
+offset_right = 464.0
+offset_bottom = 140.0
+grow_horizontal = 0
 auto_translate = false
-theme_override_fonts/normal_font = ExtResource("7_8ujlf")
+theme_override_constants/line_separation = 4
+theme_override_fonts/normal_font = ExtResource("9_w5gpr")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 fit_content_height = true
@@ -323,9 +326,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 363.99
-offset_right = 491.991
-offset_bottom = 40.0
+offset_left = 355.99
+offset_top = 8.0
+offset_right = 483.991
+offset_bottom = 48.0
 grow_horizontal = 2
 auto_translate = false
 theme_override_fonts/normal_font = ExtResource("7_8ujlf")
@@ -340,8 +344,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -15.0
-offset_right = 128.0
+offset_left = 8.0
+offset_top = -23.0
+offset_right = 136.0
+offset_bottom = -8.0
 grow_vertical = 0
 auto_translate = false
 theme_override_fonts/normal_font = ExtResource("7_8ujlf")

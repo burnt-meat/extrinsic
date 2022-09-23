@@ -1,3 +1,6 @@
+# it works, DON'T TOUCH IT
+# PLEASE
+
 extends Node
 
 var loaded_weapons: Array[Resource] = []
