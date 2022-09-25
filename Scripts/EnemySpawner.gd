@@ -2,9 +2,6 @@ extends RigidBody3D
 
 var Player: CharacterBody3D
 
-
-@onready var FishEnemy: PackedScene = preload("res://Scenes/EnemyFlying.tscn")
-
 @export var health: float = 10:
 	set(value):
 		health = value
@@ -29,7 +26,7 @@ func _integrate_forces(state):
 		apply_force(-(Player.position - position) * Vector3(1, 0, 1) * SPEED)
 
 func spawnFish() -> void:
-	var newFish := FishEnemy.instantiate()
+	var newFish = load("res://Scenes/EnemyFlying.tscn").instantiate()
 	newFish.position = position
 	get_tree().get_current_scene().get_node("Enemies").add_child(newFish)
 

@@ -228,7 +228,6 @@ script = ExtResource("5_ytuax")
 metadata/_edit_lock_ = true
 
 [node name="CrossHair" type="TextureRect" parent="HUD"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -246,7 +245,6 @@ metadata/_edit_layout_mode = 1
 
 [node name="ReloadTimer" type="ProgressBar" parent="HUD"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -262,7 +260,6 @@ show_percentage = false
 
 [node name="died" type="RichTextLabel" parent="HUD"]
 visible = false
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -281,13 +278,12 @@ bbcode_enabled = true
 text = "[center]L[/center]"
 
 [node name="Score" type="Control" parent="HUD"]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ScoreCounter" type="RichTextLabel" parent="HUD/Score"]
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -304,7 +300,6 @@ text = "0000"
 scroll_active = false
 
 [node name="ReasonShower" type="RichTextLabel" parent="HUD/Score"]
-layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -322,7 +317,6 @@ fit_content_height = true
 scroll_active = false
 
 [node name="ScoreIncrementShower" type="RichTextLabel" parent="HUD/Score"]
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -340,7 +334,6 @@ scroll_active = false
 text_direction = 2
 
 [node name="AmmoCounter" type="RichTextLabel" parent="HUD"]
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

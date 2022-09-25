@@ -32,8 +32,6 @@ var crouch_start_rotation: Vector3
 @onready var WeaponHolder: Node3D = %WeaponHolder
 @onready var HUD: Control = $HUD
 
-@onready var Ragdoll: PackedScene = preload("res://Scenes/Ragdoll.tscn")
-
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 1.5
 
 
@@ -62,7 +60,7 @@ func die():
 	dead = true
 	set_process(false)
 	set_process_input(false)
-	var ragdoll = Ragdoll.instantiate()
+	var ragdoll = load("res://Scenes/Ragdoll.tscn").instantiate()
 	Neck.remove_child(Camera)
 	ragdoll.add_child(Camera)
 	var pos := position

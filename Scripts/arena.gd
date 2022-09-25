@@ -1,19 +1,17 @@
 extends Node3D
 
 @onready var SpawnTimer: Timer = $SpawnTimer
-@onready var FishEnemy: PackedScene = preload("res://Scenes/EnemyFlying.tscn")
-@onready var UFO: PackedScene = preload("res://Scenes/EnemySpawner.tscn")
 @onready var EnemyController: Node3D = $Enemies
 @onready var Player: CharacterBody3D = $Player
 @onready var Sun: DirectionalLight3D = $Sun
 
 func spawnFish() -> void:
-	var newFish := FishEnemy.instantiate()
+	var newFish = load("res://Scenes/EnemyFlying.tscn").instantiate()
 	newFish.position = Vector3(0, 10, 0)
 	EnemyController.add_child(newFish)
 
 func spawnUFO() -> void:
-	var newUFO := UFO.instantiate()
+	var newUFO = load("res://Scenes/EnemySpawner.tscn").instantiate()
 	newUFO.position = Vector3(0, 10, 0)
 	EnemyController.add_child(newUFO)
 

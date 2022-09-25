@@ -23,6 +23,9 @@ func _ready():
 	Ray.add_exception(Player)
 
 func _process(delta):
+	if not ammo.has(current_weapon):
+		return
+	
 	AmmoCounter.text = "%s/%s" % [ammo[current_weapon].ammo_left, ammo[current_weapon].ammo_max]
 	
 	if reloading[current_weapon]:
