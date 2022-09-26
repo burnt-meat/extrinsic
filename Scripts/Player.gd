@@ -56,6 +56,7 @@ func _ready():
 	ScoreApi.connect("score_changed", func(): print(ScoreApi.score))
 	GunApi.create_weapon("Rifle", 1, .2, 20, 1.0, true, [], "res://Scenes/Guns/Rifle.tscn")
 	GunApi.create_weapon("Boom", 0, 1, 2, 5.0, false, [BoomGunEffect.new()], "res://Scenes/Guns/Boom.tscn")
+	GunApi.switch_weapon(0)
 
 func die():
 	dead = true
