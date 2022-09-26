@@ -8,6 +8,7 @@ extends Control
 @onready var ScoreIncrementShower: RichTextLabel = $Score/ScoreIncrementShower
 @onready var AP: AnimationPlayer = $AnimationPlayer
 @onready var AmmoCounter: RichTextLabel = $AmmoCounter
+@onready var HealthMeter: ProgressBar = %HealthMeter
 
 func _ready():
 	GunApi.connect("started_cooldown", _change_weapon_reloadtimer)
@@ -21,6 +22,7 @@ func died():
 	ReloadTimer.visible = false
 	$CrossHair.visible = false
 	AmmoCounter.visible = false
+	HealthMeter.visible = false
 	await get_tree().create_timer(5).timeout
 	AP.play("L")
 	await get_tree().create_timer(5).timeout
@@ -49,6 +51,9 @@ func _change_weapon_reloadtimer(id: int):
 		ReloadTimer.value = 0
 	ReloadPoll.start()
 	
+
+func _update_health_meter(health: int):
+	HealthMeter.value = health
 
 func _on_reload_poll_timeout():
 	_change_weapon_reloadtimer(WeaponHolder.current_weapon)

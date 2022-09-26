@@ -257,6 +257,17 @@ grow_horizontal = 2
 grow_vertical = 0
 show_percentage = false
 
+[node name="HealthMeter" type="ProgressBar" parent="HUD"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 19.0
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
 [node name="died" type="RichTextLabel" parent="HUD"]
 visible = false
 layout_mode = 1
