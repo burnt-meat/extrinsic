@@ -44,10 +44,10 @@ func start_cooldown(id: int):
 
 
 # Creates a weapon, and returns it's ID in the GunAPI register
-func create_weapon(name: String, damage: float, cooldown: float, mag_size: int, reload_time: float, full_auto: bool, effects: Array, scene_path: String) -> int:
+func create_weapon(p_name: String, damage: float, cooldown: float, mag_size: int, reload_time: float, full_auto: bool, effects: Array, scene_path: String) -> int:
 	var holder := _get_weapon_holder()
 	var weapon := Weapon.new()
-	weapon.name = name
+	weapon.name = p_name
 	weapon.damage = damage
 	weapon.cooldown = cooldown
 	weapon.effects = effects

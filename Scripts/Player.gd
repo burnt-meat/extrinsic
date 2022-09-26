@@ -24,6 +24,7 @@ var crouch_start_rotation: Vector3
 @export var SPEED_UP_RATE := 3
 
 @export var sensitivity := 0.2
+@export var jp_sensitivity = 0.1
 
 @onready var Neck: Node3D = $Neck
 @onready var Camera: Camera3D = $Neck/Camera
@@ -95,6 +96,13 @@ func _physics_process(delta):
 	
 	Camera.fov = lerp(Camera.fov, 75 + velocity.length(), 0.1)
 	
+	var yaw = Input.get_axis("jp_left", "jp_right")
+	rotate_y(-yaw * jp_sensitivity)
+	
+	var pitch = Input.get_axis("jp_up", "jp_down")
+	Neck.rotate_x(-pitch * jp_sensitivity)
+	Neck.rotation.x = clamp(Neck.rotation.x, -PI/2, PI/2)
+	
 	if Input.is_action_just_pressed("weapon1"):
 		GunApi.switch_weapon(0)
 	if Input.is_action_just_pressed("weapon2"):
@@ -116,10 +124,10 @@ func _physics_process(delta):
 			sliding = false
 			Camera.rotation.z = lerp(Camera.rotation.z, 0.0, 0.1)
 			WeaponHolder.rotation.z = lerp(WeaponHolder.rotation.z, 0.0, 0.1)
-		$Neck.position.y = 0.5
+		Neck.position.y = 0.5
 	else:
 		crouching = false
-		$Neck.position.y = 1
+		Neck.position.y = 1
 		Camera.rotation.z = lerp(Camera.rotation.z, 0.0, 0.1)
 		WeaponHolder.rotation.z = lerp(WeaponHolder.rotation.z, 0.0, 0.1)
 	WeaponHolder.rotation.z = clamp(WeaponHolder.rotation.z, -PI/3, PI/3)
