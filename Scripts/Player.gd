@@ -53,6 +53,7 @@ var health: float = 10.0:
 			health = val
 
 func _ready():
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ScoreApi.connect("score_changed", func(): print(ScoreApi.score))
 	GunApi.create_weapon("Rifle", 1, .2, 20, 1.0, true, [], "res://Scenes/Guns/Rifle.tscn")
@@ -148,7 +149,7 @@ func _physics_process(delta):
 		jump_grace_period = true
 		if in_air:
 			#var fall_size := jump_start_height - position.y
-			AP.playback_speed = 1
+			AP.speed_scale = 1
 			AP.play("hard_fall")
 		in_air = false
 		jumping = false

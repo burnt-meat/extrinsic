@@ -20,7 +20,7 @@ grow_vertical = 2
 script = SubResource("GDScript_gfeht")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -28,7 +28,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Button" type="Button" parent="."]
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -45,7 +45,7 @@ text = "PLAY"
 flat = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchors_preset = 5
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -256.0
@@ -58,7 +58,7 @@ bbcode_enabled = true
 text = "[center]extrinsic[/center]"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-anchors_preset = 5
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -256.0

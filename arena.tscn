@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgiouak4nco8d"]
+[gd_scene load_steps=11 format=3 uid="uid://cgiouak4nco8d"]
 
 [ext_resource type="Script" path="res://Scripts/arena.gd" id="1_d6sg4"]
 [ext_resource type="PackedScene" uid="uid://c0onwct0xl47" path="res://Scenes/Player.tscn" id="1_mne1k"]
 [ext_resource type="Texture2D" uid="uid://dlvq3r7wvyv4c" path="res://Assets/Dark/texture_01.png" id="2_jlrkr"]
-[ext_resource type="AudioStream" uid="uid://dwy3muicsdb12" path="res://Assets/Music/ArenaTheme.mp3" id="4_snqov"]
+[ext_resource type="AudioStream" uid="uid://d0m1g2c45xhgf" path="res://Assets/Music/chopin.mp3" id="4_pygkc"]
+[ext_resource type="PackedScene" uid="uid://cb7mklb2gb423" path="res://Scenes/EnemyRollingBall.tscn" id="5_6aupe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lictn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,8 +17,8 @@ sky_material = SubResource("ProceduralSkyMaterial_lictn")
 background_mode = 2
 sky = SubResource("Sky_534n5")
 tonemap_mode = 2
-glow_enabled = true
-volumetric_fog_enabled = true
+glow_strength = 0.38
+glow_bloom = 0.03
 volumetric_fog_density = 0.1
 volumetric_fog_albedo = Color(0.329412, 0.329412, 0.329412, 1)
 
@@ -75,6 +76,22 @@ wait_time = 10.0
 autostart = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_snqov")
+stream = ExtResource("4_pygkc")
+autoplay = true
+
+[node name="Rolling ball" parent="." instance=ExtResource("5_6aupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.690953, 5.25154, 10.9098)
+
+[node name="Rolling ball2" parent="." instance=ExtResource("5_6aupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.690953, 5.25154, 10.9098)
+
+[node name="Rolling ball3" parent="." instance=ExtResource("5_6aupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.690953, 5.25154, 10.9098)
+
+[node name="Rolling ball4" parent="." instance=ExtResource("5_6aupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.690953, 5.25154, 10.9098)
+
+[node name="Rolling ball5" parent="." instance=ExtResource("5_6aupe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.690953, 5.25154, 10.9098)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_spawnTick"]

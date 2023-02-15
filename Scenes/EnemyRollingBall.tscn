@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb7mklb2gb423"]
+
+[ext_resource type="Script" path="res://Scripts/RollingBall.gd" id="1_yj73x"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ht1rv"]
+radial_segments = 6
+rings = 6
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_caw3b"]
+points = PackedVector3Array(0, 0.111198, 0.487464, 0.422156, 0.111198, 0.243732, 0, 0.311668, 0.390887, -0.338601, 0.311668, 0.195444, -0.422156, 0.111198, 0.243637, 0, -0.111296, 0.487464, 0.422156, -0.111296, 0.243732, 0.422074, 0.111198, -0.243827, 0.338518, 0.311668, -0.195539, 0.338518, 0.311668, 0.195444, 0, 0.45047, 0.216916, -0.338601, 0.311668, -0.195539, -0.187937, 0.45047, 0.10841, -0.422156, 0.111198, -0.243732, -0.422156, -0.111296, 0.243637, -0.338601, -0.311766, 0.195444, 0, -0.311766, 0.390887, 0.338518, -0.311766, 0.195444, 0.338518, -0.311766, -0.195539, 0.422074, -0.111296, -0.243827, 0, 0.111198, -0.487464, 0, 0.311668, -0.390983, 0, 0.45047, -0.217011, 0.187855, 0.45047, -0.108506, 0.187855, 0.45047, 0.10841, 0, 0.5, -2.98023e-08, -0.187937, 0.45047, -0.108506, -0.422156, -0.111296, -0.243732, -0.338601, -0.311766, -0.195539, -0.187937, -0.450568, 0.10841, 0, -0.450568, 0.216916, 0.187855, -0.450568, 0.10841, 0.187855, -0.450568, -0.108506, 0, -0.450568, -0.217011, 0, -0.311766, -0.390983, 0, -0.111296, -0.487464, -0.187937, -0.450568, -0.108506, 0, -0.5, -2.98023e-08)
+
+[node name="RollingBall" type="RigidBody3D"]
+gravity_scale = 3.0
+script = ExtResource("1_yj73x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ht1rv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_caw3b")
+
+[node name="Ray" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -2)

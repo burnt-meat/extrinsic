@@ -225,8 +225,7 @@ script = ExtResource("5_ytuax")
 metadata/_edit_lock_ = true
 
 [node name="CrossHair" type="TextureRect" parent="HUD"]
-layout_mode = 1
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -238,13 +237,12 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_rkxvw")
-ignore_texture_size = true
+expand_mode = 1
 metadata/_edit_layout_mode = 1
 
 [node name="ReloadTimer" type="ProgressBar" parent="HUD"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -259,7 +257,7 @@ show_percentage = false
 
 [node name="HealthMeter" type="ProgressBar" parent="HUD"]
 unique_name_in_owner = true
-layout_mode = 1
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 184.0
@@ -270,8 +268,7 @@ show_percentage = false
 
 [node name="died" type="RichTextLabel" parent="HUD"]
 visible = false
-layout_mode = 1
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -289,14 +286,13 @@ bbcode_enabled = true
 text = "[center]L[/center]"
 
 [node name="Score" type="Control" parent="HUD"]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ScoreCounter" type="RichTextLabel" parent="HUD/Score"]
-layout_mode = 1
-anchors_preset = 5
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 172.0
@@ -312,8 +308,7 @@ text = "0000"
 scroll_active = false
 
 [node name="ReasonShower" type="RichTextLabel" parent="HUD/Score"]
-layout_mode = 1
-anchors_preset = 1
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = 294.0
@@ -326,12 +321,10 @@ theme_override_constants/line_separation = 4
 theme_override_fonts/normal_font = ExtResource("9_w5gpr")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-fit_content_height = true
 scroll_active = false
 
 [node name="ScoreIncrementShower" type="RichTextLabel" parent="HUD/Score"]
-layout_mode = 1
-anchors_preset = 5
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 355.99
@@ -343,13 +336,11 @@ auto_translate = false
 theme_override_fonts/normal_font = ExtResource("7_8ujlf")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-fit_content_height = true
 scroll_active = false
 text_direction = 2
 
 [node name="AmmoCounter" type="RichTextLabel" parent="HUD"]
-layout_mode = 1
-anchors_preset = 2
+layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
@@ -362,7 +353,6 @@ theme_override_fonts/normal_font = ExtResource("7_8ujlf")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "10/30"
-fit_content_height = true
 scroll_active = false
 
 [node name="ReloadPoll" type="Timer" parent="HUD"]
